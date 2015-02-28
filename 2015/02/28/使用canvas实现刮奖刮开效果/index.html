@@ -7,29 +7,35 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="目前在html5和css3的热潮下，html页面的效果也是层出不穷，下面我们来介绍使用canvas来模仿刮奖刮开效果。
 原理
-   在需要刮出的图片或者文字上方盖上一层灰色或者其他背景的canvas画布，当手指或者鼠标点击画布并移动时，将画布上移动过的轨迹变成透明即可。
+在需要刮出的图片或者文字上方盖上一层灰色或者其他背景的canvas画布，当手指或者鼠标点击画布并移动时，将画布上移动过的轨迹变成透明即可。
 DEMO
 &lt;!doctype html&gt;
-无标题文档.content,.cover{width:400px; hei">
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta chars">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用canvas实现刮奖刮开效果">
 <meta property="og:url" content="http://mikomoon.com/blog/blog/2015/02/28/使用canvas实现刮奖刮开效果/">
 <meta property="og:site_name" content="Miko的博客">
 <meta property="og:description" content="目前在html5和css3的热潮下，html页面的效果也是层出不穷，下面我们来介绍使用canvas来模仿刮奖刮开效果。
 原理
-   在需要刮出的图片或者文字上方盖上一层灰色或者其他背景的canvas画布，当手指或者鼠标点击画布并移动时，将画布上移动过的轨迹变成透明即可。
+在需要刮出的图片或者文字上方盖上一层灰色或者其他背景的canvas画布，当手指或者鼠标点击画布并移动时，将画布上移动过的轨迹变成透明即可。
 DEMO
 &lt;!doctype html&gt;
-无标题文档.content,.cover{width:400px; hei">
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta chars">
 <meta property="og:image" content="http://7u2sas.com1.z0.glb.clouddn.com/images/canvas.jpg">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用canvas实现刮奖刮开效果">
 <meta name="twitter:description" content="目前在html5和css3的热潮下，html页面的效果也是层出不穷，下面我们来介绍使用canvas来模仿刮奖刮开效果。
 原理
-   在需要刮出的图片或者文字上方盖上一层灰色或者其他背景的canvas画布，当手指或者鼠标点击画布并移动时，将画布上移动过的轨迹变成透明即可。
+在需要刮出的图片或者文字上方盖上一层灰色或者其他背景的canvas画布，当手指或者鼠标点击画布并移动时，将画布上移动过的轨迹变成透明即可。
 DEMO
 &lt;!doctype html&gt;
-无标题文档.content,.cover{width:400px; hei">
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta chars">
 
   
   
@@ -109,17 +115,92 @@ DEMO
       <div class="article-entry" itemprop="articleBody">
         <p><img src="http://7u2sas.com1.z0.glb.clouddn.com/images/canvas.jpg" alt="javasctipt"><br>目前在html5和css3的热潮下，html页面的效果也是层出不穷，下面我们来介绍使用canvas来模仿刮奖刮开效果。</p>
 <p>原理</p>
-<p>   在需要刮出的图片或者文字上方盖上一层灰色或者其他背景的canvas画布，当手指或者鼠标点击画布并移动时，将画布上移动过的轨迹变成透明即可。</p>
+<p>在需要刮出的图片或者文字上方盖上一层灰色或者其他背景的canvas画布，当手指或者鼠标点击画布并移动时，将画布上移动过的轨迹变成透明即可。</p>
 <p>DEMO</p>
-<p>&lt;!doctype html&gt;</p>
-<html><br><head><br><meta charset="utf-8"><br><title>无标题文档</title><br><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><br><style><br>.content,.cover{width:400px; height:400px; position:absolute; left:50%; top:50%; margin:-200px 0 0 -200px;}<br>.content{ font-size:48px; line-height:400px; text-align:center;}<br>h3{ text-align:center; line-height:200px;}<br></style><br><br></head><br><br><body><br> <h3>快来刮开！！！</h3><br> <div class="content">中奖啦~！</div><br>    <canvas id="cover" class="cover" width="400" height="400"></canvas><br></body><br><br><script><br>var isdown = false,<br> cover = document.getElementById(“cover”),<br><br> covercanvas = cover.getContext(“2d”);<br> //<br> covercanvas.fillStyle=”transparent”;<br>  //要在fillter（）之前先定义画布背景为透明<br> covercanvas.fillRect(0,0,400,400);<br><br> function fillter( canvas ){<br>  //定义画布背景为#ccc和画布大小<br>  canvas.fillStyle=”#ccc”;<br>  canvas.fillRect(0,0,400,400);<br> }<br> function isDown(e){<br>   //判断鼠标和手指是否按下<br>  e.preventDefault();<br>  isdown=true;<br> }<br> function isUp(e){<br>  //判断鼠标和手指是否抬起<br>  isdown=false;<br> }<br> function draw( e ){<br>  //如果isdown为true（即鼠标或手指在画布区域按下）获取其在画布上的位置并画出轨迹<br>  e.preventDefault();<br>  if(isdown){<br>   if(e.changedTouches){<br>    //判断如果是touch事件（即手指按下）改变event<br>                e=e.changedTouches[e.changedTouches.length-1];<br>            }<br><br>   var _height= parseInt((window.innerHeight-400)/2),<br>    _width= parseInt((window.innerWidth-400)/2),<br>    touchTop=e.clientY - _height,<br>    touchLeft=e.clientX - _width;<br><br>   with(covercanvas){<br>    // 画出按下时画布上显示的图案（这里是一个半径为10px的圆形）<br>    beginPath();<br>    arc(touchLeft, touchTop, 10, 0, Math.PI * 2);<br>    fill();<br>   }<br>  }<br>  //alert(touchTop);<br> }<br> fillter(covercanvas);<br> covercanvas.globalCompositeOperation = ‘destination-out’;<br> cover.addEventListener(‘touchstart’,isDown);<br> cover.addEventListener(‘touchmove’,draw);<br> cover.addEventListener(‘touchend’,isUp);<br> cover.addEventListener(‘mousemove’,draw);<br> cover.addEventListener(‘mousedown’,isDown);<br> cover.addEventListener(‘mouseup’,isUp);<br><br></script><br></html>
+<pre><code><span class="doctype">&lt;!doctype html&gt;</span>
+<span class="tag">&lt;<span class="title">html</span>&gt;</span>
+<span class="tag">&lt;<span class="title">head</span>&gt;</span>
+<span class="tag">&lt;<span class="title">meta</span> <span class="attribute">charset</span>=<span class="value">"utf-8"</span>&gt;</span>
+<span class="tag">&lt;<span class="title">title</span>&gt;</span>无标题文档<span class="tag">&lt;/<span class="title">title</span>&gt;</span>
+<span class="tag">&lt;<span class="title">meta</span> <span class="attribute">name</span>=<span class="value">"viewport"</span> <span class="attribute">content</span>=<span class="value">"width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"</span> /&gt;</span>
+<span class="tag">&lt;<span class="title">style</span>&gt;</span><span class="css">
+<span class="class">.content</span>,<span class="class">.cover</span><span class="rules">{<span class="rule"><span class="attribute">width</span>:<span class="value"><span class="number">400px</span></span></span>; <span class="rule"><span class="attribute">height</span>:<span class="value"><span class="number">400px</span></span></span>; <span class="rule"><span class="attribute">position</span>:<span class="value">absolute</span></span>; <span class="rule"><span class="attribute">left</span>:<span class="value"><span class="number">50%</span></span></span>; <span class="rule"><span class="attribute">top</span>:<span class="value"><span class="number">50%</span></span></span>; <span class="rule"><span class="attribute">margin</span>:<span class="value">-<span class="number">200px</span> <span class="number">0</span> <span class="number">0</span> -<span class="number">200px</span></span></span>;<span class="rule">}</span></span>
+<span class="class">.content</span><span class="rules">{ <span class="rule"><span class="attribute">font-size</span>:<span class="value"><span class="number">48px</span></span></span>; <span class="rule"><span class="attribute">line-height</span>:<span class="value"><span class="number">400px</span></span></span>; <span class="rule"><span class="attribute">text-align</span>:<span class="value">center</span></span>;<span class="rule">}</span></span>
+<span class="tag">h3</span><span class="rules">{ <span class="rule"><span class="attribute">text-align</span>:<span class="value">center</span></span>; <span class="rule"><span class="attribute">line-height</span>:<span class="value"><span class="number">200px</span></span></span>;<span class="rule">}</span></span>
+</span><span class="tag">&lt;/<span class="title">style</span>&gt;</span>
 
-<p>分析</p>
-<pre><code>demo中在<span class="class"><span class="keyword">class</span>为<span class="title">content</span>的<span class="title">div</span>上盖上一层灰色的画布，然后通过获取鼠标和手指的坐标计算出在画布位置上的坐标，通过在坐标原点位置画一个半径10<span class="title">px</span>的透明圆形来透过画布，显示出画布下的内容。本<span class="title">demo</span>是用时需要改变的内容为<span class="title">_width</span>，<span class="title">_height</span>,<span class="title">touchTop</span>,<span class="title">touchLeft</span>这几个参数，根据自身画布的位置自行计算即可。由于是长按事件，记得在移动端阻止浏览器默认功能。      </span>
-</code></pre>
+<span class="tag">&lt;/<span class="title">head</span>&gt;</span>
+
+<span class="tag">&lt;<span class="title">body</span>&gt;</span>
+ <span class="tag">&lt;<span class="title">h3</span>&gt;</span>快来刮开！！！<span class="tag">&lt;/<span class="title">h3</span>&gt;</span>
+ <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"content"</span> &gt;</span>中奖啦~！<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">canvas</span> <span class="attribute">id</span>=<span class="value">"cover"</span> <span class="attribute">class</span>=<span class="value">"cover"</span> <span class="attribute">width</span>=<span class="value">"400"</span> <span class="attribute">height</span>=<span class="value">"400"</span>&gt;</span><span class="tag">&lt;/<span class="title">canvas</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">body</span>&gt;</span>
+
+<span class="tag">&lt;<span class="title">script</span>&gt;</span><span class="javascript">
+<span class="keyword">var</span> isdown = <span class="literal">false</span>,
+ cover = <span class="built_in">document</span>.getElementById(<span class="string">"cover"</span>),
+
+ covercanvas = cover.getContext(<span class="string">"2d"</span>);
+ <span class="comment">//</span>
+ covercanvas.fillStyle=<span class="string">"transparent"</span>;
+  <span class="comment">//要在fillter（）之前先定义画布背景为透明</span>
+ covercanvas.fillRect(<span class="number">0</span>,<span class="number">0</span>,<span class="number">400</span>,<span class="number">400</span>);
+
+ <span class="function"><span class="keyword">function</span> <span class="title">fillter</span><span class="params">( canvas )</span></span>{
+  <span class="comment">//定义画布背景为#ccc和画布大小</span>
+  canvas.fillStyle=<span class="string">"#ccc"</span>;
+  canvas.fillRect(<span class="number">0</span>,<span class="number">0</span>,<span class="number">400</span>,<span class="number">400</span>);
+ }
+ <span class="function"><span class="keyword">function</span> <span class="title">isDown</span><span class="params">(e)</span></span>{
+   <span class="comment">//判断鼠标和手指是否按下</span>
+  e.preventDefault();
+  isdown=<span class="literal">true</span>;    
+ }
+ <span class="function"><span class="keyword">function</span> <span class="title">isUp</span><span class="params">(e)</span></span>{
+  <span class="comment">//判断鼠标和手指是否抬起</span>
+  isdown=<span class="literal">false</span>;    
+ }
+ <span class="function"><span class="keyword">function</span> <span class="title">draw</span><span class="params">( e )</span></span>{
+  <span class="comment">//如果isdown为true（即鼠标或手指在画布区域按下）获取其在画布上的位置并画出轨迹</span>
+  e.preventDefault();
+  <span class="keyword">if</span>(isdown){
+   <span class="keyword">if</span>(e.changedTouches){
+    <span class="comment">//判断如果是touch事件（即手指按下）改变event</span>
+                e=e.changedTouches[e.changedTouches.length-<span class="number">1</span>];
+            }
+
+   <span class="keyword">var</span> _height= <span class="built_in">parseInt</span>((<span class="built_in">window</span>.innerHeight-<span class="number">400</span>)/<span class="number">2</span>),
+    _width= <span class="built_in">parseInt</span>((<span class="built_in">window</span>.innerWidth-<span class="number">400</span>)/<span class="number">2</span>),
+    touchTop=e.clientY - _height,
+    touchLeft=e.clientX - _width;
+
+   <span class="keyword">with</span>(covercanvas){
+    <span class="comment">// 画出按下时画布上显示的图案（这里是一个半径为10px的圆形）</span>
+    beginPath();
+    arc(touchLeft, touchTop, <span class="number">10</span>, <span class="number">0</span>, <span class="built_in">Math</span>.PI * <span class="number">2</span>);
+    fill();
+   }    
+  }
+  <span class="comment">//alert(touchTop);</span>
+ }
+ fillter(covercanvas);
+ covercanvas.globalCompositeOperation = <span class="string">'destination-out'</span>;
+ cover.addEventListener(<span class="string">'touchstart'</span>,isDown);
+ cover.addEventListener(<span class="string">'touchmove'</span>,draw);
+ cover.addEventListener(<span class="string">'touchend'</span>,isUp);
+ cover.addEventListener(<span class="string">'mousemove'</span>,draw);
+ cover.addEventListener(<span class="string">'mousedown'</span>,isDown);
+ cover.addEventListener(<span class="string">'mouseup'</span>,isUp);
+
+</span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">html</span>&gt;</span>
+</code></pre><p>分析</p>
+<p>demo中在class为content的div上盖上一层灰色的画布，然后通过获取鼠标和手指的坐标计算出在画布位置上的坐标，通过在坐标原点位置画一个半径10px的透明圆形来透过画布，显示出画布下的内容。本demo是用时需要改变的内容为_width，_height,touchTop,touchLeft这几个参数，根据自身画布的位置自行计算即可。由于是长按事件，记得在移动端阻止浏览器默认功能。      </p>
+
       </div>
       <footer class="article-footer">
-        <a data-url="http://mikomoon.com/blog/2015/02/28/使用canvas实现刮奖刮开效果/" data-id="2pue6onvdvoqs1u3" class="article-share-link">分享到</a>
+        <a data-url="http://mikomoon.com/blog/2015/02/28/使用canvas实现刮奖刮开效果/" data-id="9clnk2f09270r1e9" class="article-share-link">分享到</a>
         
         
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/canvas/">canvas</a></li></ul>
